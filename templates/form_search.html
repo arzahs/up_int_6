@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-offset-4 col-md-6">
+            {% if error %}
+                <p class="alert alert-danger">{{ error }}</p>
+            {% endif %}
+                <form action="" class="form-horizontal" method="post">
+                     <div class="form-group">
+            {% if form.non_field_errors %}
+                <ul class="alert alert-danger" style="display: block;">
+                    {{ form.non_field_errors }}
+                </ul>
+            {% endif %}
+                     </div>
+                    {% csrf_token  %}
+                <div class="form-group">
+                    <label class="col-sm-2" for="{{ form.city.id_for_label }}">City: </label>
+                <div class="col-sm-10">
+                    {% if form.city.errors %}
+                        <label class="text-danger">{{ form.city.errors }}</label>
+                    {% endif %}
+                    <input type="text" class="form-control" id="{{ form.city.id_for_label }}" name="{{ form.city.html_name }}" placeholder="kiev">
+
+                </div>
+                </div>
+                    <input type="submit" class="btn btn-primary" value="Search!">
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

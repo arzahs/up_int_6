@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+             <ul id='myTabs' class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#routes" aria-controls="routes" role="tab" data-toggle="tab">Routes</a></li>
+            <li role="presentation"><a href="#carriers" aria-controls="carriers" role="tab" data-toggle="tab">Carriers</a></li>
+  </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="routes">
+             <table class="table table-responsive table-bordered">
+                 <thead>
+                    <th>Quote Ids</th>
+                    <th>Destination Id</th>
+                    <th>Origin Id</th>
+                    <th>Quote Date Time</th>
+                    <th>Price</th>
+                 </thead>
+                 <tbody>
+                 {% for route in routes %}
+                     <tr>
+                     <td>{{ route.QuoteIds }}</td>
+                     <td>{{ route.DestinationId }}</td>
+                     <td>{{ route.OriginId }}</td>
+                      <td>{{ route.QuoteDateTime }}</td>
+                     <td>{{ route.Price }}</td>
+                 </tr>
+                 {% endfor %}
+
+                 </tbody>
+             </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="carriers">
+             <table class="table table-responsive table-bordered">
+                 <thead>
+                    <th>Carrier Id</th>
+                    <th>Name</th>
+                 </thead>
+                 <tbody>
+                 {% for carrier in carriers %}
+                     <tr>
+                     <td>{{ carrier.CarrierId }}</td>
+                     <td>{{ carrier.Name}}</td>
+                 </tr>
+                 {% endfor %}
+                 </tbody>
+             </table>
+        </div>
+
+        </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+ {{ block.super }}
+     <script>
+    $('#myTabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
+    </script>
+{% endblock %}
